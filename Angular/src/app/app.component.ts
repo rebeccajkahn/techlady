@@ -7,19 +7,19 @@ import {Book} from './book'
 
 @Component({
   selector: 'my-app',
-  template: `<h1>Hello!</h1>
+  template: `<h1>Hello {{name}}!</h1>
   <ul>
+  <p>Here is my list of books!</p>
   <li *ngFor="let book of books">{{book.name}}</li></ul>
     <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" [(ngModel)]="model.name" name="name" required>
-
+</div>
       <button type="submit" class="btn btn-success">Submit</button>
 	  
 
-    </form>
-</div>`,
+    </form>`,
 })
 export class AppComponent implements OnInit  { 
 
@@ -29,7 +29,8 @@ export class AppComponent implements OnInit  {
   model = new Book("");
 
   onSubmit(bookForm) { 
-  this.http.post('http://localhost:3002/booksPost2', bookForm.value).map(res => res).subscribe(res => {
+  console.log(bookForm.value)
+  this.http.post('http://localhost:3002/booksPost', bookForm.value).map(res => res).subscribe(res => {
                 this.books = res.json();
             });
   }
