@@ -8,14 +8,13 @@ import {Book} from './book'
 @Component({
   selector: 'my-app',
   template: `<h1>Hello!</h1>
-  <div class="container">
   <ul>
   <li *ngFor="let book of books">{{book.name}}</li></ul>
     <form #bookForm="ngForm" (ngSubmit)="onSubmit(bookForm)">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" [(ngModel)]="model.name" name="name" required>
-      </div>
+
       <button type="submit" class="btn btn-success">Submit</button>
 	  
 
